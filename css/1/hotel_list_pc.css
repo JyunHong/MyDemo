@@ -1,0 +1,63 @@
+ @media (min-width: 992px) {
+        *{
+        margin: 0px;
+        padding:0px;
+
+    }
+      .box{
+        /*background-color: #ccc;*/
+        padding-top: 10px; 
+        /*border: 1px solid rgba(51,51,51,51);*/
+      }
+      .img{
+        height: 200px;
+        border-radius:3%;
+      }
+      
+      #hotel_img{
+        background-image: url(../images/bgimg.png);
+        height: 200px;
+        width: 100%;
+        border-radius:3%;
+      }
+
+
+        
+/*
+        .yeslogin{
+            display:<?php
+             if(isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+        .notlogin{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+
+        .loginuser{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }*/
+
+   
+
+         
+           
+
+
+
+
+
+
+}

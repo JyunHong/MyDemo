@@ -1,0 +1,231 @@
+ @media (max-width: 576px) {
+ 	*{
+ 		margin: 0px;
+ 		padding:0px;
+
+     }
+     
+            .mymenu{
+                margin-right: 0px;
+            }
+
+            nav a{
+                width:70%;
+            }
+
+            .myimg_bg{
+                background-color: #362E2E
+            }
+            #hotel_img{
+                padding: 0px;
+                
+            
+            }
+
+            /*#myfav{
+                padding: 20px;
+            }*/
+
+
+
+
+            .img{
+                height:250px;
+                width: 100%;
+                              
+            }
+
+            
+            .bg-cover{
+                -webkit-background-size: cover;
+                background-size: cover;
+                background-position: center center;
+                
+            }
+
+            .mytext{
+				width: 100px;
+            }
+
+		    .content{
+		        _height:650px;
+		        min-height: 650px;
+		        background-color: #CCAB87;
+		    }
+
+           
+            .address{
+            	height: 65px;
+            }
+
+            #htl_info{
+                padding: 0 20px;
+            }
+           
+            .mytitle{
+                letter-spacing:2px;
+                color:#FFFFFF;
+                font-weight: bold;
+                
+                text-align:left;
+                
+            }
+            .left_1{
+
+                text-align:left;
+            }
+
+            .cmt_Tle{
+                letter-spacing:10px;
+                font-weight: bold;
+                 text-align:center;
+                 margin-top: 20px;
+
+
+            }
+
+            .cmt_sub{
+                 margin-top: 10px;
+            }
+
+            .mybtn{
+                  float: right;
+                  background-color: #B0955B;
+                  color:#FFFFFF;
+
+            }
+
+            .btn_cancel{
+
+                background-color: #7B7474;
+                color:#FFFFFF;
+                margin-bottom: 50px;
+            }
+
+            
+            .htltle_color{
+            	color:#F6EFEF;
+            }
+
+            .mywidth{
+            	width:45%;
+            }
+
+            .myhr{
+                height:5px;
+                width: 50px;
+                
+                margin:0 auto;
+                 
+            }
+
+            .cmt_hrcol{
+                background-color: #796464;
+            }
+
+            .htl_hrcol{
+                background-color: #FFFFFF;
+            }
+
+
+            .cmt_height{
+                _height:200px; 
+                min-height:200px;
+                padding-bottom: 50px;
+                background-color: #E3F1FF;
+            }
+
+
+            .cmt_Tle{
+                letter-spacing:10px;
+                font-weight: bold;
+                 text-align:center;
+                 margin-top: 20px;
+
+
+            }
+            .cmt_txt{
+                font-size: 16px;
+                color: #915C5C;
+                margin-bottom: 10px;
+                 width: 80%;  
+            }
+            .cmt_user{
+
+                font-size: 16px;
+                color: #915C5C;
+                font-weight: bold;
+               
+
+            }
+           /* .cmt_width{
+				width: 80%;
+                margin-top: 10px;
+                margin-right: 10;
+                margin: 0 auto;
+            }*/
+
+            .htltle_color{
+                color:#F6EFEF;
+            }
+
+            .cmttle_color{
+                color:#8D603F;
+            }
+
+            .mywidth{
+                width:45%;
+            
+            }
+
+
+
+
+            .cmt_hr{
+                height:0.1px;            
+                margin:0 auto;
+            } 
+        
+
+            /*.cmt_layout{
+                margin-top: 5px;
+                padding-bottom: 5px;
+            }*/
+
+
+            .mycmt_all{
+                padding: 5px;
+            }
+
+           legend{
+               font-weight: bold;
+               font-size:25px;
+           }
+
+
+
+
+            
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    

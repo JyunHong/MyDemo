@@ -1,0 +1,236 @@
+@media (min-width: 300px){
+ 	*{
+ 		margin: 0px;
+ 		padding:0px;
+
+ 	}
+    
+            
+        /*首頁*/
+
+        .home_c1{
+            background-color: #362E2E;
+
+
+        }
+
+        .form-control{
+            width: 150px;
+        }
+
+        .text-sm-dark{
+                color: #3C3B3B;
+        }
+
+        .header-carousel-item{
+            height: 350px;
+        }
+
+        .carousel-caption{
+            /*background-color: rgba(0,0,0,0.4);*/
+            z-index: -1;
+        }
+
+        /*.box{
+            width: 100%;
+            height: auto;
+            top: 51px;
+            left: 0px;
+        }*/
+        .box{
+
+            width: 80%;
+            height: auto;
+            /*top: 51px;*/
+            /*left: 0px;*/
+            /*top: 55%;*/
+            /*margin-top: ;*/
+            margin-top: 230px;
+            margin-left: 10%;
+            /*margin-right: 40px;*/
+            background-color: rgba(255,255,255,0.3);
+            padding: 15px;
+            color: #3C3B3B;
+        }
+
+
+        #searchForm {
+            position:absolute;
+            top: 10%;
+            left:  auto;
+            right:  auto;
+            z-index: 3;
+        }
+
+        #circleImg {
+           border-radius: 50%;
+        }
+
+        .mysearch_btn{
+            background-color: #52B9DE;
+        }
+
+        .c_table{
+            padding: 20px;
+        }
+
+       
+/*------------card卡片-------------*/
+        .search_all{
+            background-color: #E3F1FF;
+        }
+        .search_Tle{
+                letter-spacing:10px;
+                font-weight: bold;
+                 text-align:center;
+                 margin-top: 20px;
+
+
+        }
+
+        .search_color{
+            color:#86645A;
+        }
+
+        .input-group-sm{
+            position: relative;
+            flex: 1 1 auto;
+            margin-bottom: 0;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+  
+ 
+ /* 修改以下值試試看 wrap | nowrap | wrap | wrap-reverse*/
+  
+
+        }
+
+        .form-control{
+          flex: 0 0 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          /*display: block;*/
+          width: 100%;
+          height: calc(1.5em + .75rem + 2px);
+          padding: .375rem .75rem;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #495057;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #ced4da;
+          border-radius: .25rem;
+          transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+        }
+
+       
+
+        .myhr{
+                height:5px;
+                width: 50px;
+                margin:0 auto;     
+        }
+
+        .cmt_hrcol{
+                background-color: #86645A   ~~~~;
+        }
+        .c_border{
+            margin: 20px;
+        }
+
+        .c_all{
+            background-color: #FFFFFF; 
+        }
+
+        .c_img{
+            width:100%; 
+            height:200px;
+            /*padding: 10px;*/
+        }
+
+        
+
+        .home_title{
+            color: #86645A;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing:2px;
+            padding: 0 30px;
+        }
+
+        .price{
+            color: #EB6666;
+            font-size: 18px;
+            padding: 0 30px;
+        }
+
+        .c_phone{
+            color:#9E8E8E;
+            margin-bottom: 10px;
+            font-size: 18px;
+            padding: 0 30px;
+
+        }
+
+         .c_btn{
+            font-size: 20px;
+            margin-top: 10px;
+            background-color: #CCAB87;
+            color:#FFFFFF;
+        }
+
+
+        
+/*
+        .yeslogin{
+            display:<?php
+             if(isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+        .notlogin{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+
+        .loginuser{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }*/
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    

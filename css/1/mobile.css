@@ -1,0 +1,119 @@
+ @media (max-width: 576px) {
+ 	*{
+ 		margin: 0px;
+ 		padding:0px;
+
+ 	}
+
+            
+        /*首頁*/
+
+        .home_c1{
+            background-color: #362E2E;
+
+
+        }
+
+        .home_title{
+            color: #86645A;
+            font-weight: bold;
+        }
+
+        .price{
+            color: #DA9292;
+        }
+
+        .text-sm-dark{
+                color: #3C3B3B;
+        }
+
+        .header-carousel-item{
+            height: 400px;
+        }
+
+        .carousel-caption{
+            /*background-color: rgba(0,0,0,0.4);*/
+            z-index: -1;
+        }
+
+
+        #searchForm {
+            position:absolute;
+            top: 10%;
+            left:  auto;
+            right:  auto;
+            z-index: 3;
+        }
+
+        #circleImg {
+           border-radius: 50%;
+        }
+
+       .c_img{
+            width:100%; 
+            height:200px;
+            padding: 10px;
+        }
+
+        .c_phone{
+            color:#9E8E8E;
+            margin-bottom: 10px;
+            font-size: 20px;
+
+        }
+
+       .c_btn{
+             font-size: 20px;
+             margin-top: 10px;
+        }
+
+
+        
+/*
+        .yeslogin{
+            display:<?php
+             if(isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+        .notlogin{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }
+
+        .loginuser{
+            display:<?php
+             if(!isset($_SESSION["u_name"])):
+                echo "none";
+             else :
+                echo "inline";
+             endif;?>;
+        }*/
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    

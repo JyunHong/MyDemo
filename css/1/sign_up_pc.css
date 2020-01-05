@@ -1,0 +1,241 @@
+ @media (min-width: 992px) {
+    
+    *{
+        margin: 0px;
+        padding:0px;
+
+    }
+
+	.box{
+			width: 150px;
+		}
+
+	.b1 {
+  			border-style: none;
+  			background: #FFFFFF;
+		}
+
+	.all{
+		background-color: #CECECE;
+		height: 600px;
+	}
+
+	.title{
+		 letter-spacing:10px;
+         font-weight: bold;
+         text-align:center;
+         margin-top: 20px;
+         color:#3189A9;
+         font-size: 35px;
+	}
+	p{
+		font-weight: bold;
+        text-align:center;
+        margin-top: 20px;
+        color:#3189A9;
+        font-size: 20px;
+
+	}
+
+	.box1{
+		 width: 80%;
+         height: auto;
+         /*top: 51px;*/
+         /*left: 0px;*/
+         /*top: 55%;*/
+         /*margin-top: ;*/
+         /*margin-top: 230px;
+           margin-left: 10%;*/
+         /*margin-right: 40px;*/
+         background-color: rgba(255,255,255,0.3);
+         padding: 15px;
+         color: #3C3B3B;
+	}
+
+	.up_btn{
+		background-color:#3189A9;
+        color:#FFFFFF;
+        margin-left: 50px;
+	}
+
+	.myuser{
+		margin-top: 100px;
+	}
+
+    .header-carousel-item{
+        height: 400px;
+    }
+    .bg-cover{
+        background-position: center center;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+
+    .carousel-caption{
+        /*background-color: rgba(0,0,0,0.4);*/
+        z-index: -1;
+    }
+
+     #searchForm {
+      position:absolute;
+        top: 60%;
+        left: 30%;
+        z-index: 3;
+      }
+
+      #circleImg {
+         border-radius: 50%;
+      }
+
+      body, html {
+        height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .bg-img {
+        /* The image used */
+        background-image: url(../../images/fav001.png);
+        
+        min-height: 900px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+
+      /* Add styles to the form container */
+     /* .container {
+        position: absolute;
+        left:20%;
+        margin: 20px;
+        max-width: 330px;
+        padding: 16px;
+        background-color: white;
+      }
+*/
+      /* Full-width input fields */
+      input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+      }
+
+      input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+
+      /* Set a style for the submit button */
+      .sign-btn {
+        background-color: #3189A9;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+      }
+
+      .btn-cancel{
+        background-color: #918C8C;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+      }
+
+      .btn:hover {
+        opacity: 1;
+      }
+
+      .box{
+            width: 150px;
+        }
+
+    .b1 {
+            border-style: none;
+            background: #FFFFFF;
+        }
+
+    .all{
+        background-color: #CECECE;
+        height: 1200px;
+    }
+
+    .title{
+         letter-spacing:10px;
+         font-weight: bold;
+         text-align:center;
+         margin-top: 20px;
+         color:#3189A9;
+         font-size: 35px;
+    }
+    p{
+        font-weight: bold;
+        text-align:center;
+        margin-top: 20px;
+        color:#3189A9;
+        font-size: 20px;
+
+    }
+
+    .box1{
+         width: 500px;
+         height: auto;
+         /*top: 51px;*/
+         /*left: 0px;*/
+         /*top: 55%;*/
+         /*margin-top: ;*/
+         /*margin-top: 230px;
+           margin-left: 10%;*/
+         /*margin-right: 40px;*/
+         background-color: rgba(255,255,255,0.8);
+         padding: 15px;
+         color: #3C3B3B;
+    }
+
+    .up_btn{
+        background-color:#3189A9;
+        color:#FFFFFF;
+        margin-left: 50px;
+    }
+
+    .myuser{
+        margin-top: 100px;
+    }   	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} 

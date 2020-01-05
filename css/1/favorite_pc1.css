@@ -1,0 +1,261 @@
+ @media (min-width: 992px) {
+    
+    *{
+        margin: 0px;
+        padding:0px;
+
+    }
+    .header-carousel-item{
+            height: 400px;
+        }
+    .bg-cover{
+            background-position: center center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+    .carousel-caption{
+            /*background-color: rgba(0,0,0,0.4);*/
+            z-index: -1;
+        }
+
+    #searchForm {
+            position:absolute;
+            top: 10%;
+            left:  : auto;
+            right: : auto;
+            z-index: 3;
+        }
+
+    #circleImg {
+           border-radius: 50%;
+        }
+
+    .price{
+            color: #D50A0A;
+        }    
+
+	.box{
+			width: 150px;
+		}
+
+	.b1 {
+  			border-style: none;
+  			background: #FFFFFF;
+		}
+
+	/*.all{
+		background-color: ;
+        background-color: #CECECE;
+		height: 2000px;
+	}*/
+
+     .bg-img {
+        /* The image used */
+        background-image: url(../../images/fav001.png);
+        
+        min-height: 900px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+
+	.title{
+		 letter-spacing:10px;
+         font-weight: bold;
+         text-align:center;
+         margin-top: 20px;
+         color:#BD9F5D;
+         font-size: 35px;
+	}
+
+    .subtitle{
+         letter-spacing:5px;
+         font-weight: bold;
+         text-align:center;
+         margin-top: 15px;
+         color:#BD9F5D;
+         font-size: 24px;
+    }
+	p{
+		font-weight: bold;
+        text-align:center;
+        margin-top: 20px;
+        color:#3189A9;
+        font-size: 20px;
+
+	}
+
+	.box1{
+		 width: 80%;
+         height: auto;
+         /*top: 51px;*/
+         /*left: 0px;*/
+         /*top: 55%;*/
+         /*margin-top: ;*/
+        
+         /*margin-left: 40px;
+         margin-right: 40px;*/
+         background-color: rgba(255,255,255,0.8);
+         padding: 15px;
+         
+         color: #3C3B3B;
+	}
+
+	.up_btn{
+		background-color:#3189A9;
+        color:#FFFFFF;
+        margin-left: 50px;
+	}
+
+	.myuser{
+		margin-top: 100px;
+	}
+
+    .myhr{
+                height:5px;
+                width: 50px;
+                
+                margin:0 auto;
+                background-color: #796464;
+                 
+            }
+
+    /*------------card卡片-------------*/
+        .search_all{
+            background-color: #E3F1FF;
+        }
+        .search_Tle{
+                letter-spacing:10px;
+                font-weight: bold;
+                 text-align:center;
+                 margin-top: 20px;
+
+
+        }
+
+        .search_color{
+            color:#86645A;
+        }
+
+        .input-group-sm{
+            position: relative;
+            flex: 1 1 auto;
+            margin-bottom: 0;
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+  
+ 
+ /* 修改以下值試試看 wrap | nowrap | wrap | wrap-reverse*/
+  
+
+        }
+
+        .form-control{
+          flex: 0 0 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          /*display: block;*/
+          width: 100%;
+          height: calc(1.5em + .75rem + 2px);
+          padding: .375rem .75rem;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #495057;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #ced4da;
+          border-radius: .25rem;
+          transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+        }
+
+       
+
+        .myhr{
+                height:5px;
+                width: 50px;
+                margin:0 auto;     
+        }
+
+        .cmt_hrcol{
+                background-color: #86645A   ~~~~;
+        }
+        .c_border{
+            margin: 20px;
+        }
+
+        .c_all{
+            background-color: #FFFFFF;
+            width: 320px; 
+        }
+
+        .c_img{
+            width:100%; 
+            height:200px;
+            /*padding: 10px;*/
+            float:center;
+        }
+
+        
+
+        .home_title{
+            color: #86645A;
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing:2px;
+            padding: 0 30px;
+        }
+
+        .price{
+            color: #EB6666;
+            font-size: 25px;
+            padding: 0 30px;
+        }
+
+        .c_phone{
+            color:#9E8E8E;
+            margin-bottom: 10px;
+            font-size: 25px;
+            padding: 0 30px;
+
+        }
+
+         .c_btn{
+            font-size: 20px;
+            margin-top: 10px;
+            background-color: #CCAB87;
+            color:#FFFFFF;
+        }	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}    
