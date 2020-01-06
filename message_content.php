@@ -161,7 +161,7 @@
 		$(function(){
 			//讀取留言
             var m_id=getUrlParameter('m_id');
-            // console.log(getUrlParameter('m_id'));
+            console.log(getUrlParameter('m_id'));
             $.ajax({
                 type:"GET",
                 url:"../api/mess_read_api.php",
@@ -246,18 +246,51 @@
 		            $("#remess").html("目前沒有任何留言回覆!!");
 		        }  
             });
+            // 讀取我回覆留言是否按讚
+         //    $.ajax({
+         //        type:"POST",
+         //        url:"../api/like_remessage_read_api.php",
+         //        data:{u_ID:
+         //                <?php 
+         //                    if(isset($_SESSION["u_ID"])){
+         //                        echo $_SESSION["u_ID"];
+         //                    }else{
+         //                        echo "0";
+         //                    }
+         //                ?>
+         //            ,m_id:getUrlParameter('m_id')},
+         //        success:showremesslike,
+         //        error:function(){
+         //            alert("like_remessage_read_api.php error!!");
+         //        }
+        	// });
+        	// function showremesslike(data){
+        	// 	console.log(data[0]);
+        	// 	for(i=0;i<data.length;i++){	
+        	// 		if(data[i]==true){
+        	// 			checkremesslike(data[i],true);
+        	// 		}else{
+        	// 			checkremesslike(data[i],false);
+        	// 		}	
+        	// 	}
+        	// }
         	function remess(data){
 			// console.log(data);			
 				for(i=0;i<data.length;i++){
 					strMESSAGE='';
 					strMESSAGE+='<div class="list-group remess box">';
-					strMESSAGE+='<a class="list-group-item list-group-item-action">';
-					strMESSAGE+='<div class="d-flex w-100 justify-content-between">';
+					strMESSAGE+='<ul class="list-group-item list-group-item-action">';
+					strMESSAGE+='<li class="d-flex w-100 justify-content-between">';
 					strMESSAGE+='<small>'+data[i].u_name+' 的回覆</small>';
 					strMESSAGE+='<small>樓層: '+data[i].rem_floor+' '+data[i].rem_createtime+'</small>';
-					strMESSAGE+='</div>';
+					strMESSAGE+='</li>';
+					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
 					strMESSAGE+='<p class="mb-1">'+data[i].rem_message+'</p>';
-					strMESSAGE+='</a>';
+					strMESSAGE+='</li>';
+					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
+					strMESSAGE+='<small><a href="" onclick="remesslike('+data[i].rem_id+')" rem_id="'+data[i].rem_id+'"><img src="./images/icon/like-50.png" alt="" id="remesslike" width="20" height="20"></a> 已有'+data[i].rem_like+'個讚</small>';
+					strMESSAGE+='</li>';
+					strMESSAGE+='</ul>';
 					strMESSAGE+='</div>';
 					$("#remess").append(strMESSAGE);
 				}
@@ -325,7 +358,7 @@
 		    });
 		}
 		function likemessage(data){
-			console.log($("#like").attr("src","images/icon/relike-50.png"));
+			// console.log($("#like").attr("src","images/icon/relike-50.png"));
             $("#like").attr("src","images/icon/relike-50.png");
         }
         function checklike(data){
@@ -336,6 +369,37 @@
                 $("#like").attr("src","images/icon/relike-50.png");
             }
         }
+        function remesslike(rem_id){
+		    $.ajax({
+		        type:"POST",
+		        url:"../api/like_remessage_api.php",
+		        data:{u_ID:
+		            <?php 
+		            if(isset($_SESSION["u_ID"])){
+		                echo $_SESSION["u_ID"];
+		                }else{
+		                echo "0";
+		                }
+		            ?>
+		            ,rem_id:rem_id},
+		        success:likeremess,
+		        error:function(){
+		            alert("re_message!!");
+		        }
+		    });
+		}
+		function likeremess(data){
+			// console.log($("#like").attr("src","images/icon/relike-50.png"));
+            $("#remesslike").attr("src","images/icon/relike-50.png");
+        }
+        // function checkremesslike(rem_id,m){
+        // 	console.log(rem_id);
+	       //  if(m==true){
+	       //          $("rem_id").attr("src","images/icon/like-50.png");
+	       //      }else{
+	       //          $("rem_id").attr("src","images/icon/relike-50.png");
+	       //      }     	
+        // } 
 	</script>
 </body>
 

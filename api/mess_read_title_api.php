@@ -1,6 +1,6 @@
 <?php
 	header("Access-Control-Allow-Origin:*");
-	$m_theme=$_GET["m_theme"];
+	$m_theme=$_POST["m_theme"];
 
 	require_once("dbtools.inc.php");
 	$link = create_connection();

@@ -159,10 +159,10 @@
 	<div class="row content">
 	  <div class="col-3">
 	    <div class="list-group">
-		  <a href="message_board.php?m_theme=有趣" class="list-group-item list-group-item-action">有趣</a>
-		  <a href="message_board.php?m_theme=閒聊" class="list-group-item list-group-item-action">閒聊</a>
-		  <a href="message_board.php?m_theme=美食" class="list-group-item list-group-item-action">美食</a>
-		  <a href="message_board.php?m_theme=電影" class="list-group-item list-group-item-action">電影</a>
+		  <a href="#" class="list-group-item list-group-item-action" onclick="checkhtitle('有趣')">有趣</a>
+		  <a href="#" class="list-group-item list-group-item-action" onclick="checkhtitle('閒聊')">閒聊</a>
+		  <a href="#" class="list-group-item list-group-item-action" onclick="checkhtitle('美食')">美食</a>
+		  <a href="#" class="list-group-item list-group-item-action" onclick="checkhtitle('電影')">電影</a>
 		</div>
 	  </div>
 	  <div class="col-8" >
@@ -174,25 +174,9 @@
 	<script>
 		$(function(){
 			//讀取留言
-			var getUrlParameter = function getUrlParameter(sParam) {
-                var sPageURL = window.location.search.substring(1),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
-
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                    }
-                }
-            };
-            var m_theme=getUrlParameter('m_theme');
-            // console.log(getUrlParameter('m_theme'));
-            if(m_theme==undefined){ 	
-            	$.ajax({
-                type:"GET",
+			var m_theme;
+            $.ajax({
+                type:"POST",
                 url:"../api/mess_read_title_api.php",
                 data:{m_theme:"有趣"},
                 dataType:"json",
@@ -200,21 +184,21 @@
                 error:function(){
                 	$("#messageboard").html("目前沒有任何文章!!");
                 }
-        	});
-            }else{
-	            $.ajax({
-	                type:"GET",
-	                url:"../api/mess_read_title_api.php",
-	                data:{m_theme:m_theme},
-	                dataType:"json",
-	                success:show,
-	                error:function(){
-	                	$("#messageboard").html("目前沒有任何文章!!");
-	                }
-	        	});	
-            }
-            
+        	});         
         });
+        function checkhtitle (m_theme){
+			//切換看板
+            $.ajax({
+                type:"POST",
+                url:"../api/mess_read_title_api.php",
+                data:{m_theme:m_theme},
+                dataType:"json",
+                success:show,
+                error:function(){
+		            $("#messageboard").html("目前沒有任何評論!!");
+                }
+            });
+        }
         function searchtitle (){
 			//搜尋留言
 			var search_title;
