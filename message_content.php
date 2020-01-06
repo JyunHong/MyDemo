@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/all.min.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
 	<style>
-		.yeslogin{
+		.notlogin{
 			display:<?php
 			 if(isset($_SESSION["u_ID"])):
 			 	echo "none";
@@ -18,13 +18,16 @@
 			 	echo "inline";
 			 endif;?>;
 		}
-		.notlogin{
+		.yeslogin{
 			display:<?php
 			 if(!isset($_SESSION["u_ID"])):
 			 	echo "none";
 			 else :
 			 	echo "inline";
 			 endif;?>;
+		}
+		.pl{
+			padding-right: 5px;
 		}
 		.myset{
 			height:250px;	
@@ -62,45 +65,46 @@
 </head>
 <body>
 	<div class="bd-example">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light" >
-		  <a class="navbar-brand" href="home_page.php">JHProject</a>
-		  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+		<a class="navbar-brand" href="home_page.php">JHProject</a>
+		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
 
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav ml-auto">
-	          <li class="nav-item yeslogin">
-	            <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
-	          </li>
-	          <li class="nav-item yeslogin">
-	            <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
-	          </li>
-	          <li class="nav-item active notlogin">
-	            <a class="nav-link" href="/message_board.php">留言版</a>
-	          </li>
-	          <li class="nav-item notlogin">
-				<a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
-			  </li>
-	        </ul>
-	        <ul class="navbar-nav nav-pills notlogin">
-
-		      <li class="nav-item active dropdown notlogin">
-		        <a class="nav-link dropdown-toggle notlogin" data-toggle="dropdown"><?php if(isset($_SESSION["u_name"])){echo $_SESSION["u_name"];}?> 您好</a>
-		        <div class="dropdown-menu">
-		          <a class="dropdown-item notlogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="yourdata.php">顯示個人資料</a>
-		          <a class="dropdown-item notlogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="userdata_up.php">修改個人資料</a>
-		          <a class="dropdown-item notlogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="user_up_password.php">變更密碼</a>
-		          <a class="dropdown-item managerlogin <?php if((!$_SESSION["u_level"]==8)  || (!$_SESSION["u_level"]==9)){ echo "d-none";} ?>" href="backup.php">控制台分析圖表</a>
-		          <a class="dropdown-item managerlogin <?php if((!$_SESSION["u_level"]==8)  || (!$_SESSION["u_level"]==9)){ echo "d-none";} ?>" href="userdata_list_table.php">會員列表</a>
-		        </div>
-		      </li>
-		    </ul>
-		    <li class="nav-item notlogin">
-				<a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav ml-auto">
+		    <li class="nav-item pl">
+	          <a class="nav-link" href="/message_board.php">留言版</a>
+	        </li>
+	        <li class="nav-item pl">
+			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
-		  </div>
-		</nav>	
+	        <li class="nav-item notlogin pl">
+	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
+	        </li>
+	        <li class="nav-item notlogin pl">
+	          <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
+	        </li>
+	      </ul>
+	      <ul class="navbar-nav nav-pills yeslogin">
+			<li class="nav-item active dropdown yeslogin">
+		      <a class="nav-link dropdown-toggle yeslogin" data-toggle="dropdown"><?php if(isset($_SESSION["u_name"])){echo $_SESSION["u_name"];}?> 您好</a>
+		      <div class="dropdown-menu">
+		        <a class="dropdown-item yeslogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="yourdata.php">顯示個人資料</a>
+		        <a class="dropdown-item yeslogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="userdata_up.php">修改個人資料</a>
+		        <a class="dropdown-item yeslogin <?php if($_SESSION["u_level"]==1){ echo "d-none";} ?>" href="user_up_password.php">變更密碼</a>
+		        <a class="dropdown-item managerlogin <?php if((!$_SESSION["u_level"]==8)  || (!$_SESSION["u_level"]==9)){ echo "d-none";} ?>" href="backup.php">控制台分析圖表</a>
+		        <a class="dropdown-item managerlogin <?php if((!$_SESSION["u_level"]==8)  || (!$_SESSION["u_level"]==9)){ echo "d-none";} ?>" href="userdata_list_table.php">會員列表</a>
+		      </div>
+		    </li>
+		  </ul>
+		  <ul class="navbar-nav">
+			<li class="nav-item yeslogin">
+			  <a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+			</li>
+		  </ul>
+		</div>
+	  </nav>	
 	</div>
 
 	<div class="row content">
@@ -183,9 +187,9 @@
 				strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
 				strMESSAGE+='<small>作者: '+data[0].u_name+'</small>';
 					if(data[0].u_ID==<?php if(isset($_SESSION["u_ID"])){echo $_SESSION["u_ID"];}else{echo "0";}?>){
-					strMESSAGE+='<small><a href="/api/"  id="'+data[0].u_ID+'"><img src="/images/icon/edit-24.png" alt="編輯" width="15" height="15"></a></small>';
+					strMESSAGE+='<small><a href="#" id="'+data[0].u_ID+'" onclick="chkupdatemess()"><img src="/images/icon/edit-24.png" alt="編輯" width="15" height="15"></a></small>';
 					}else{
-					strMESSAGE+='<small><a href="/api/" id="'+data[0].u_ID+'"><img src="/images/icon/wstar-50.png" alt="編輯" width="15" height="15"></a></small>';
+					strMESSAGE+='<small><a href="" onclick="favorite()"><img src="/images/icon/wstar-50.png" alt="編輯" width="15" height="15" id="favoritemess"></a></small>';
 					}
 				strMESSAGE+='</li>';
 				strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
@@ -213,33 +217,30 @@
                     ,m_id:getUrlParameter('m_id')},
                 success:checklike,
                 error:function(){
-                    alert("read_fav_error!!");
+                    alert("like_message_read_api.php error");
                 }
         	});
-			// $("#like_btn").bind("click",function(){
-			// 	$.ajax({
-			//         type:"POST",
-			//         url:"../api/like_message_api.php",
-			//         data:{u_ID:
-			//             <?php 
-			//             if(isset($_SESSION["u_ID"])){
-			//                 echo $_SESSION["u_ID"];
-			//                 }else{
-			//                 echo "0";
-			//                 }
-			//             ?>
-			//             ,m_id:getUrlParameter('m_id')},
-			//         success:likemessage,
-			//         error:function(){
-			//             alert("like_message_api.php error");
-		 //        	}
-		 //    	});
-			// });
+            //讀取我是否收藏
+        	$.ajax({
+                type:"POST",
+                url:"../api/favorite_message_read_api.php",
+                data:{u_ID:
+                        <?php 
+                            if(isset($_SESSION["u_ID"])){
+                                echo $_SESSION["u_ID"];
+                            }else{
+                                echo "0";
+                            }
+                        ?>
+                    ,m_id:getUrlParameter('m_id')},
+                success:checkfavorite,
+                error:function(){
+                    alert("favorite_message_read_api.php error!!");
+                }
+        	});
+
         });
         $(function(){
-        	// var checkrelike=0;
-        	// var i=91;
-        	// $("#"+i).attr("src","images/icon/relike-50.png");
 			//讀取回覆留言
             var m_id=getUrlParameter('m_id');
             // console.log(getUrlParameter('m_id'));
@@ -287,8 +288,7 @@
 	        	}
         	}
 
-
-        	function remess(data){
+      	 	function remess(data){
 				for(i=0;i<data.length;i++){
 					// console.log(chkremesslike(data[i].rem_id));
 					chkremesslike(data[i].rem_id);
@@ -381,7 +381,6 @@
 		    });
 		}
 		function likemessage(data){
-			// console.log($("#like").attr("src","images/icon/relike-50.png"));
             $("#like").attr("src","images/icon/relike-50.png");
         }
 
@@ -394,7 +393,17 @@
                 $("#like").attr("src","images/icon/relike-50.png");
             }
         }
+        //如果留言已經收藏 星星會是黑色
+        function checkfavorite(data){
+        // console.log(data);
+        	if(data){
+                $("#favoritemess").attr("src","images/icon/wstar-50.png");
+            }else{
+                $("#favoritemess").attr("src","images/icon/bstar-50.png");
+            }
+        }
 
+        //按讚回覆留言
         function remesslike(rem_id){
 		    $.ajax({
 		        type:"POST",
@@ -415,8 +424,37 @@
 		    });
 		}
 		function likeremess(data){
-			// console.log($("#like").attr("src","images/icon/relike-50.png"));
-            $("#remesslike").attr("src","images/icon/relike-50.png");
+            // $("#remesslike").attr("src","images/icon/relike-50.png");
+        }
+
+        //文章加入收藏
+        function favorite(){
+        	$.ajax({
+		        type:"POST",
+		        url:"../api/favorite_message_api.php",
+		        data:{u_ID:
+		            <?php 
+		            if(isset($_SESSION["u_ID"])){
+		                echo $_SESSION["u_ID"];
+		                }else{
+		                echo "0";
+		                }
+		            ?>
+		            ,m_id:getUrlParameter('m_id')},
+		        success:favoritemessage,
+		        error:function(){
+		            alert("re_message!!");
+		        }
+		    });
+        }
+        function favoritemessage(data){
+        	alert(data);
+            // $("#favoritemess").attr("src","images/icon/bstar-50.png");
+        }
+        function chkupdatemess(){
+        	if(confirm("是否編輯文章?")){
+        		location.href="update_message.php?m_id="+getUrlParameter('m_id');
+        	}   	
         }
 	</script>
 </body>
