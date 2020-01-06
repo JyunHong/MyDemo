@@ -6,7 +6,6 @@
 	if (isset($_REQUEST['logout'])) {
    		session_unset();
 		if(session_destroy()){
-			header("Location: ../homepage.php");
 			header("Location: ../home_page.php");
 		}
 	}

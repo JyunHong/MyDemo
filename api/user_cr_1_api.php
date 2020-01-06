@@ -7,8 +7,7 @@
 	$u_phone = $_POST["u_phone"];//u_phone
 	$u_email = $_POST["u_username"];//u_email
 	$u_name = $_POST["u_name"];//u_name
-	$u_session = $_POST["u_session"];;
-	$u_google = $_POST["u_google"];;
+	$u_session = $_POST["u_session"];
 	$u_level = $_POST["u_level"];
 	
 	require_once("dbtools.inc.php");
@@ -21,7 +20,6 @@
 		// echo "此帳號已有人使用,請使用其他帳號";
 		echo 2;
 		}else{
-			$sql = "INSERT INTO userdata (u_username, u_password, u_phone, u_email, u_name, u_session, u_google)  VALUES ('$u_username', '$u_password', '$u_phone','$u_email','$u_name', '$u_session', '$u_google')";
 			$sql = "INSERT INTO userdata (u_username, u_password, u_phone, u_email, u_name, u_level)  VALUES ('$u_username', '$u_password', '$u_phone','$u_email','$u_name', '$u_level')";
 			if (execute_sql($link, "jhproject", $sql)) {
 			// echo "註冊成功";

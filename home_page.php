@@ -45,6 +45,9 @@
 			border-radius: 2%;
 
 		}
+		.box{
+			height: 100vh;
+		}
 
 	</style>
 
@@ -60,16 +63,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="/message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言版</a>
 	        </li>
 	        <li class="nav-item pl">
 			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
+	          <a class="nav-link btn btn-outline-primary" href="login.php">登入</a>
 	        </li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
+	          <a class="nav-link btn btn-outline-primary" href="register.php">註冊</a>
 	        </li>
 	      </ul>
 	      <ul class="navbar-nav nav-pills yeslogin">
@@ -130,7 +133,7 @@
 
 	<div class="bd-example">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="#">商品清單</a>
+		  <a class="navbar-brand" href="#">Demo</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -159,19 +162,52 @@
 		      </li> -->
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0">
-		      <input class="form-control mr-sm-2" type="search" placeholder="尋找你要的商品" aria-label="Search">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜尋</button>
 		    </form>
 		  </div>
 		</nav>
 	</div>
 	<div>
-		<div class="container">
+		<div class="container box">
 			<div class="row">
 				<div class="col-1"></div>
-				<div class="col-10 text-center"><h1>準備製作小型商城</h1></div>
+				<div class="col-10 text-center"><h1>練習計畫</h1></div>
 			</div>
-			<div class="row mt-3" id="hotel_data">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center"><h1>1.會員系統</h1></div>
+			</div>
+			<div class="row">
+				<div class="col-3"></div>
+				<div class="col-6">
+					<ul>
+						<li>1.會員註冊</li>
+						<li>2.會員登入</li>
+						<li>3.會員資料修改</li>
+					</ul>
+				</div>
+				<div class="col-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center"><h1>2.留言板</h1></div>
+			</div>
+			<div class="row">
+				<div class="col-3"></div>
+				<div class="col-6">
+					<ul>
+						<li>1.發佈留言</li>
+						<li>2.回覆留言</li>
+						<li>3.留言CRUD</li>
+						<li>4.留言按讚</li>
+						<li>5.留言收藏</li>
+						<li>6.留言回應.按讚計數</li>						
+					</ul>
+				</div>
+				<div class="col-3"></div>
+			</div>
+			<!-- <div class="row mt-3" id="hotel_data">
 				<div class="col-sm-4 mb-3">
 					<div class="card border-dark" >
 					<div id="hotel_img">
@@ -184,7 +220,8 @@
 					</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
+		</div>
 	</div>	
 	<script src="../js/bootstrap.min.js"></script>
 </body>

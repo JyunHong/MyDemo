@@ -58,7 +58,7 @@
 	          <a class="nav-link" href="/message_board.php">留言版</a>
 	        </li>
 	        <li class="nav-item pl">
-			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
+			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="../images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
 	        <li class="nav-item notlogin pl">
 	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
