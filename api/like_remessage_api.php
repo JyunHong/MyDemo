@@ -11,8 +11,8 @@
 	$sql = "SELECT reml_id FROM remessagelike WHERE rem_id = $rem_id AND u_ID = $u_ID ";
 	$result = execute_sql($link, "jhproject" , $sql);
 	if(mysqli_num_rows($result)==0){
-		//取出m_like值 加減
-		$sql = "SELECT rem_like FROM messages WHERE m_id = $m_id";
+		//取出rem_like值 加減
+		$sql = "SELECT rem_like FROM remessages WHERE rem_id = $rem_id";
 		$result = execute_sql($link, "jhproject" , $sql);
 		$row=mysqli_fetch_assoc($result);
 		$rem_like=$row["rem_like"];

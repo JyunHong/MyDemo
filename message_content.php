@@ -105,7 +105,7 @@
 
 	<div class="row content">
 	  <div class="col-1">
-	  	<button type="button" class="btn btn-outline-light" onclick="history.back()">back</button>
+	  	<button type="button" class="btn btn-outline-dark" onclick="history.back()">back</button>
 	  </div>
 	  <div class="col-10" id="messagecontent">
 <!-- 	  	<div class="list-group messagecontent">
@@ -161,7 +161,7 @@
 		$(function(){
 			//讀取留言
             var m_id=getUrlParameter('m_id');
-            console.log(getUrlParameter('m_id'));
+            // console.log(getUrlParameter('m_id'));
             $.ajax({
                 type:"GET",
                 url:"../api/mess_read_api.php",
@@ -182,7 +182,11 @@
 				strMESSAGE+='</li>';
 				strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
 				strMESSAGE+='<small>作者: '+data[0].u_name+'</small>';
-				// strMESSAGE+='<a href="/api/" class="chkuid" id="'+data[0].u_ID+'"><img src="/images/icon/wbag-50.png" alt="編輯" width="15" height="15"></a>';
+					if(data[0].u_ID==<?php if(isset($_SESSION["u_ID"])){echo $_SESSION["u_ID"];}else{echo "0";}?>){
+					strMESSAGE+='<small><a href="/api/"  id="'+data[0].u_ID+'"><img src="/images/icon/edit-24.png" alt="編輯" width="15" height="15"></a></small>';
+					}else{
+					strMESSAGE+='<small><a href="/api/" id="'+data[0].u_ID+'"><img src="/images/icon/wstar-50.png" alt="編輯" width="15" height="15"></a></small>';
+					}
 				strMESSAGE+='</li>';
 				strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
 				strMESSAGE+='<p class="mb-1 ellipsis">'+data[0].m_message+'</p>';
@@ -233,6 +237,9 @@
 			// });
         });
         $(function(){
+        	// var checkrelike=0;
+        	// var i=91;
+        	// $("#"+i).attr("src","images/icon/relike-50.png");
 			//讀取回覆留言
             var m_id=getUrlParameter('m_id');
             // console.log(getUrlParameter('m_id'));
@@ -246,37 +253,45 @@
 		            $("#remess").html("目前沒有任何留言回覆!!");
 		        }  
             });
-            // 讀取我回覆留言是否按讚
-         //    $.ajax({
-         //        type:"POST",
-         //        url:"../api/like_remessage_read_api.php",
-         //        data:{u_ID:
-         //                <?php 
-         //                    if(isset($_SESSION["u_ID"])){
-         //                        echo $_SESSION["u_ID"];
-         //                    }else{
-         //                        echo "0";
-         //                    }
-         //                ?>
-         //            ,m_id:getUrlParameter('m_id')},
-         //        success:showremesslike,
-         //        error:function(){
-         //            alert("like_remessage_read_api.php error!!");
-         //        }
-        	// });
-        	// function showremesslike(data){
-        	// 	console.log(data[0]);
-        	// 	for(i=0;i<data.length;i++){	
-        	// 		if(data[i]==true){
-        	// 			checkremesslike(data[i],true);
-        	// 		}else{
-        	// 			checkremesslike(data[i],false);
-        	// 		}	
-        	// 	}
-        	// }
+
+            //讀取我回覆留言是否按讚
+			function chkremesslike(rem_id){
+	            $.ajax({
+	                type:"POST",
+	                url:"../api/like_remessage_read_api.php",
+	                data:{u_ID:
+	                        <?php 
+	                            if(isset($_SESSION["u_ID"])){
+	                                echo $_SESSION["u_ID"];
+	                            }else{
+	                                echo "0";
+	                            }
+	                        ?>
+	                    ,m_id:getUrlParameter('m_id'),rem_id:rem_id},
+	                success:showremesslike,
+	                error:function(){
+	                    alert("like_remessage_read_api.php error!!");
+	                }
+	        	});
+	        	function showremesslike(data){
+	        		// console.log(data);
+	        		var remid;
+	        		remid=rem_id;
+	        		// console.log(remid);
+	        		if(data==0){
+	        			$("#"+remid).attr("src","images/icon/relike-50.png");
+	        		}else{
+	        			$("#"+remid).attr("src","images/icon/like-50.png");
+	        		}
+	        		
+	        	}
+        	}
+
+
         	function remess(data){
-			// console.log(data);			
 				for(i=0;i<data.length;i++){
+					// console.log(chkremesslike(data[i].rem_id));
+					chkremesslike(data[i].rem_id);
 					strMESSAGE='';
 					strMESSAGE+='<div class="list-group remess box">';
 					strMESSAGE+='<ul class="list-group-item list-group-item-action">';
@@ -287,14 +302,20 @@
 					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
 					strMESSAGE+='<p class="mb-1">'+data[i].rem_message+'</p>';
 					strMESSAGE+='</li>';
-					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';
-					strMESSAGE+='<small><a href="" onclick="remesslike('+data[i].rem_id+')" rem_id="'+data[i].rem_id+'"><img src="./images/icon/like-50.png" alt="" id="remesslike" width="20" height="20"></a> 已有'+data[i].rem_like+'個讚</small>';
+					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';				
+                    strMESSAGE+='<small><a href="" onclick="remesslike('+data[i].rem_id+')" >';
+                    // if(checkrelike){
+                    strMESSAGE+='<img src="./images/icon/like-50.png" alt="" id="'+data[i].rem_id+'" width="15" height="15">';
+                	// }
+					strMESSAGE+='</a> 已有'+data[i].rem_like+'個讚</small>';
 					strMESSAGE+='</li>';
 					strMESSAGE+='</ul>';
 					strMESSAGE+='</div>';
 					$("#remess").append(strMESSAGE);
 				}
-			}	
+
+			}
+	
         });
         // 回覆留言
         var remess_ok=0;
@@ -315,6 +336,7 @@
 	        	alert("留言不可以空白");
 	        }
     	}
+    	//回覆留言API
 	    function insertmess(){	
 			$.ajax({
 		        type:"POST",
@@ -338,6 +360,7 @@
 		    alert(data);
 		    location.href="message_content.php?m_id="+getUrlParameter('m_id');
 		}
+		//留言按讚加減
 		function like(){
 		    $.ajax({
 		        type:"POST",
@@ -361,6 +384,8 @@
 			// console.log($("#like").attr("src","images/icon/relike-50.png"));
             $("#like").attr("src","images/icon/relike-50.png");
         }
+
+        //如果留言已經按過 讚會是黑色
         function checklike(data){
         // console.log(data);
         	if(data){
@@ -369,6 +394,7 @@
                 $("#like").attr("src","images/icon/relike-50.png");
             }
         }
+
         function remesslike(rem_id){
 		    $.ajax({
 		        type:"POST",
@@ -392,14 +418,6 @@
 			// console.log($("#like").attr("src","images/icon/relike-50.png"));
             $("#remesslike").attr("src","images/icon/relike-50.png");
         }
-        // function checkremesslike(rem_id,m){
-        // 	console.log(rem_id);
-	       //  if(m==true){
-	       //          $("rem_id").attr("src","images/icon/like-50.png");
-	       //      }else{
-	       //          $("rem_id").attr("src","images/icon/relike-50.png");
-	       //      }     	
-        // } 
 	</script>
 </body>
 

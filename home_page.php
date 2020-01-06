@@ -62,7 +62,7 @@
 	          <li class="nav-item yeslogin">
 	            <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
 	          </li>
-	          <li class="nav-item active notlogin">
+	          <li class="nav-item notlogin">
 	            <a class="nav-link" href="/message_board.php">留言版</a>
 	          </li>
 	          <li class="nav-item notlogin">
@@ -82,9 +82,11 @@
 		        </div>
 		      </li>
 		    </ul>
-		    <li class="nav-item notlogin">
-				<a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
-			</li>
+		    <ul class="navbar-nav">
+			    <li class="nav-item notlogin">
+					<a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+				</li>
+			</ul>
 		  </div>
 		</nav>	
 	</div>

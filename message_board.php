@@ -224,7 +224,7 @@
 			strMESSAGE+='</div>';
 			strMESSAGE+='<p class="mb-1 ellipsis">'+data[i].m_message+'</p>';
 			strMESSAGE+='<div class="d-flex w-100 justify-content-between align-items-center">';
-			strMESSAGE+='<small>作者: '+data[i].u_name+'</small>';
+			strMESSAGE+='<small>作者: '+data[i].u_name+' <img src="./images/icon/relike-50.png" alt="" id="remesslike" width="15" height="15"> '+data[i].m_like+'</small>';
 			strMESSAGE+='<small>已有 '+data[i].rem+'則留言</small>';
 			strMESSAGE+='</div>';
 			strMESSAGE+='</a>';		
