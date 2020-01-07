@@ -7,6 +7,10 @@
 	$sql = "DELETE FROM messages WHERE m_id = " . $m_id;
 	
 	if(execute_sql($link, "jhproject", $sql)){
+		$sql = "DELETE FROM remessages WHERE m_id = " . $m_id;
+		execute_sql($link, "jhproject", $sql);
+		$sql = "DELETE FROM messagelike WHERE m_id = " . $m_id;
+		execute_sql($link, "jhproject", $sql);
 		echo "刪除成功";
 	}else{
 		echo "刪除失敗".mysqli_error($link);

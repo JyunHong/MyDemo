@@ -51,7 +51,7 @@
 			padding-right: 5px;
 			padding-left: 5px;
 		}
-		.box{
+		.pt{
 			padding-top: 5px;
 		}
 /*		p{
@@ -74,16 +74,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="/message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言版</a>
 	        </li>
 	        <li class="nav-item pl">
-			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
+			  <a class="nav-link" href="api/logout-api.php"><img class="shopbag" src="images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
+	          <a class="nav-link btn btn-outline-primary" href="login.php">登入</a>
 	        </li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
+	          <a class="nav-link btn btn-outline-primary" href="register.php">註冊</a>
 	        </li>
 	      </ul>
 	      <ul class="navbar-nav nav-pills yeslogin">
@@ -100,7 +100,7 @@
 		  </ul>
 		  <ul class="navbar-nav">
 			<li class="nav-item yeslogin">
-			  <a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+			  <a class="nav-link btn btn-outline-primary" href="api/logout-api.php">登出</a>
 			</li>
 		  </ul>
 		</div>
@@ -178,7 +178,7 @@
             });
         	function show(data){
 				strMESSAGE='';
-				strMESSAGE+='<div class="list-group messagecontent box">';
+				strMESSAGE+='<div class="list-group messagecontent">';
 				strMESSAGE+='<ul class="list-group-item">';
 				strMESSAGE+='<li class="d-flex w-100 justify-content-between">';
 				strMESSAGE+='<h4 class="mb-1">'+data[0].m_title+'</h4>';
@@ -293,7 +293,7 @@
 					// console.log(chkremesslike(data[i].rem_id));
 					chkremesslike(data[i].rem_id);
 					strMESSAGE='';
-					strMESSAGE+='<div class="list-group remess box">';
+					strMESSAGE+='<div class="list-group remess pt">';
 					strMESSAGE+='<ul class="list-group-item list-group-item-action">';
 					strMESSAGE+='<li class="d-flex w-100 justify-content-between">';
 					strMESSAGE+='<small>'+data[i].u_name+' 的回覆</small>';
@@ -304,9 +304,7 @@
 					strMESSAGE+='</li>';
 					strMESSAGE+='<li class="d-flex w-100 justify-content-between align-items-center">';				
                     strMESSAGE+='<small><a href="" onclick="remesslike('+data[i].rem_id+')" >';
-                    // if(checkrelike){
                     strMESSAGE+='<img src="./images/icon/like-50.png" alt="" id="'+data[i].rem_id+'" width="15" height="15">';
-                	// }
 					strMESSAGE+='</a> 已有'+data[i].rem_like+'個讚</small>';
 					strMESSAGE+='</li>';
 					strMESSAGE+='</ul>';
@@ -416,7 +414,7 @@
 		                echo "0";
 		                }
 		            ?>
-		            ,rem_id:rem_id},
+		            ,rem_id:rem_id,m_id:getUrlParameter('m_id')},
 		        success:likeremess,
 		        error:function(){
 		            alert("re_message!!");

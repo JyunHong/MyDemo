@@ -4,6 +4,7 @@
 	
 	$rem_id = $_POST["rem_id"];
 	$u_ID = $_POST["u_ID"];
+	$m_id = $_POST["m_id"];
 
 	require_once("dbtools.inc.php");
 	$link = create_connection();
@@ -18,9 +19,9 @@
 		$rem_like=$row["rem_like"];
 		$rem_like+=1;
 		//新增你按讚的資料
-		$sql = "INSERT INTO remessagelike (rem_id, u_ID) VALUES ('$rem_id', '$u_ID')";
+		$sql = "INSERT INTO remessagelike (rem_id, u_ID, m_id) VALUES ('$rem_id', '$u_ID', '$m_id')";
 		execute_sql($link, "jhproject", $sql);
-		//更新m_like的值
+		//更新rem_like的值
 		$sql = "SELECT rem_like FROM remessages WHERE rem_id = ".$rem_id;
 		$result = execute_sql($link, "jhproject" , $sql);
 		if (mysqli_num_rows($result)>0) {
@@ -35,19 +36,12 @@
 			echo "無此筆資料";
 		}
 	}else{
-		//取出m_like值 加減
+		//取出rem_like值 加減
 		$sql = "SELECT rem_like FROM remessages WHERE rem_id = $rem_id";
 		$result = execute_sql($link, "jhproject" , $sql);
 		$row=mysqli_fetch_assoc($result);
 		$rem_like=$row["rem_like"];
 		$rem_like-=1;
-
-		// $sql = "INSERT INTO messagelike (m_id, u_ID) VALUES ('$m_id', '$u_ID')";
-		// if (execute_sql($link, "jhproject", $sql)) {
-		// 	echo 1 ;
-		// }else{
-		// 	echo 0 .mysqli_error($link);
-		// }
 
 		//更新m_like的值
 		$sql = "SELECT rem_like FROM remessages WHERE rem_id = ".$rem_id;

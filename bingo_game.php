@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>JHProject</title>
+	<title>BingoGame</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -95,42 +95,6 @@
 		</div>
 	  </nav>	
 	</div>
-	<div class="bd-example">
-		<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-		    <ol class="carousel-indicators">
-			    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-			    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-			    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-		    </ol>
-
-		    <div class="carousel-inner">
-			    <div class="carousel-item active myset bg_cover" style="background-image: url(images/06.jpg);">      
-			        <div class="carousel-caption d-none d-md-block">
-			        </div>
-			    </div>
-
-			    <div class="carousel-item myset bg_cover" style="background-image: url(images/04.jpg);">
-			        <div class="carousel-caption d-none d-md-block">
-			        </div>
-			    </div>
-
-				<div class="carousel-item myset bg_cover" style="background-image: url(images/05.jpg);">
-			        <div class="carousel-caption d-none d-md-block">
-			        </div>
-			    </div>	
-		    </div>
-
-		    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-		    </a>
-		    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-		    </a>
-		</div>
-	</div>
-
 	<div class="bd-example">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand" href="#">Demo</a>

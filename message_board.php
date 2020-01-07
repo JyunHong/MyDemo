@@ -51,11 +51,14 @@
 			padding-right: 5px;
 			padding-left: 5px;
 		}
-		p{
-		white-space:nowrap; 
-		width:100%;
-		overflow:hidden;
-		text-overflow:ellipsis;
+		.pt{
+			padding-top: 2px;
+		}
+		 p{
+			white-space:nowrap; 
+			width:100%;
+			overflow:hidden;
+			text-overflow:ellipsis;
 		}
 	</style>
 
@@ -71,16 +74,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="/message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言版</a>
 	        </li>
 	        <li class="nav-item pl">
-			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="/images/icon/wbag-50.png" alt="" width="20" height="20"></a>
+			  <a class="nav-link" href="api/logout-api.php"><img class="shopbag" src="images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
+	          <a class="nav-link btn btn-outline-primary" href="login.php">登入</a>
 	        </li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
+	          <a class="nav-link btn btn-outline-primary" href="register.php">註冊</a>
 	        </li>
 	      </ul>
 	      <ul class="navbar-nav nav-pills yeslogin">
@@ -97,7 +100,7 @@
 		  </ul>
 		  <ul class="navbar-nav">
 			<li class="nav-item yeslogin">
-			  <a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+			  <a class="nav-link btn btn-outline-primary" href="api/logout-api.php">登出</a>
 			</li>
 		  </ul>
 		</div>
@@ -112,17 +115,17 @@
 		    </ol>
 
 		    <div class="carousel-inner">
-			    <div class="carousel-item active myset bg_cover" style="background-image: url(images/03.jpg);">      
+			    <div class="carousel-item active myset bg_cover" style="background-image: url(images/05.jpg);">      
 			        <div class="carousel-caption d-none d-md-block">
 			        </div>
 			    </div>
 
-			    <div class="carousel-item myset bg_cover" style="background-image: url(images/02.jpg);">
+			    <div class="carousel-item myset bg_cover" style="background-image: url(images/04.jpg);">
 			        <div class="carousel-caption d-none d-md-block">
 			        </div>
 			    </div>
 
-				<div class="carousel-item myset bg_cover" style="background-image: url(images/01.jpg);">
+				<div class="carousel-item myset bg_cover" style="background-image: url(images/06.jpg);">
 			        <div class="carousel-caption d-none d-md-block">
 			        </div>
 			    </div>	
@@ -170,7 +173,7 @@
 		</div>
 	  </div>
 	  <div class="col-8" >
-	  	<div class="list-group messageboard box" id="messageboard">
+	  	<div class="list-group messageboard" id="messageboard">
 	  	</div>
 	  </div>
 	</div>	
@@ -181,8 +184,7 @@
 			var m_theme;
             $.ajax({
                 type:"POST",
-                url:"../api/mess_read_title_api.php",
-                data:{m_theme:"有趣"},
+                url:"../api/mess_read_new_api.php",
                 dataType:"json",
                 success:show,
                 error:function(){
@@ -199,7 +201,7 @@
                 dataType:"json",
                 success:show,
                 error:function(){
-		            $("#messageboard").html("目前沒有任何評論!!");
+		            $("#messageboard").html("目前沒有任何文章!!");
                 }
             });
         }
@@ -213,7 +215,7 @@
                 dataType:"json",
                 success:show,
                 error:function(){
-		            $("#messageboard").html("目前沒有任何評論!!");
+		            $("#messageboard").html("沒有搜尋到任何文章!!");
                 }
             });
         }
@@ -221,6 +223,7 @@
 			// console.log(data);
 			strMESSAGE='';
 			for(i=0;i<data.length;i++){
+			strMESSAGE+='<div class="pt">';
 			strMESSAGE+='<a href="message_content.php?m_id='+data[i].m_id+'" class="list-group-item list-group-item-action">';
 			strMESSAGE+='<div class="d-flex w-100 justify-content-between align-items-center">';
 			strMESSAGE+='<h4 class="mb-1">'+data[i].m_title+'</h4>';
@@ -231,7 +234,8 @@
 			strMESSAGE+='<small>作者: '+data[i].u_name+' <img src="./images/icon/relike-50.png" alt="" id="remesslike" width="15" height="15"> '+data[i].m_like+'</small>';
 			strMESSAGE+='<small>已有 '+data[i].rem+'則留言</small>';
 			strMESSAGE+='</div>';
-			strMESSAGE+='</a>';		
+			strMESSAGE+='</a>';
+			strMESSAGE+='</div>';		
 			}
 			$("#messageboard").html(strMESSAGE);	
 		}

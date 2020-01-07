@@ -55,16 +55,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="/message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言版</a>
 	        </li>
 	        <li class="nav-item pl">
-			  <a class="nav-link" href="/api/logout-api.php"><img class="shopbag" src="../images/icon/wbag-50.png" alt="" width="20" height="20"></a>
+			  <a class="nav-link" href="api/logout-api.php"><img class="shopbag" src="images/icon/wbag-50.png" alt="" width="20" height="20"></a>
 			</li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/login.php">登入</a>
+	          <a class="nav-link btn btn-outline-primary" href="login.php">登入</a>
 	        </li>
 	        <li class="nav-item notlogin pl">
-	          <a class="nav-link btn btn-outline-primary" href="/register.php">註冊</a>
+	          <a class="nav-link btn btn-outline-primary" href="register.php">註冊</a>
 	        </li>
 	      </ul>
 	      <ul class="navbar-nav nav-pills yeslogin">
@@ -81,7 +81,7 @@
 		  </ul>
 		  <ul class="navbar-nav">
 			<li class="nav-item yeslogin">
-			  <a class="nav-link btn btn-outline-primary" href="/api/logout-api.php">登出</a>
+			  <a class="nav-link btn btn-outline-primary" href="api/logout-api.php">登出</a>
 			</li>
 		  </ul>
 		</div>
