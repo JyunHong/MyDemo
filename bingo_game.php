@@ -26,9 +26,15 @@
 			 	echo "inline";
 			 endif;?>;
 		}
+		.pa{
+			padding:0px;
+		}
 		.pl{
 			padding-right: 5px;
 		}
+		.pt{
+			padding-top: 10px;
+		}		
 		.myset{
 			height:250px;	
 		}
@@ -45,21 +51,19 @@
 			border-radius: 2%;
 
 		}
-		.pt{
-			padding-top: 15px;
-		}
+
 		.box{
 			height:100vh;
 		}
 		.circle{
-			border:  2px solid #666;
+			border:  2px solid #111;
 			height: 80px;
 			width: 20px;
 			border-radius: 50%;
 		}
 		td{
-			width: 40px;
-			height: 40px;
+			width: 25px;
+			height: 25px;
 		}
 		.tablebox{
 			width: 240px;
@@ -83,7 +87,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言板</a>
 	        </li>
 	        <li class="nav-item pl">
 			  <a class="nav-link" href="api/logout-api.php"><img class="shopbag" src="images/icon/wbag-50.png" alt="" width="20" height="20"></a>

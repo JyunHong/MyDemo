@@ -62,8 +62,14 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav ml-auto">
+		  	<li class="nav-item pl">
+	          <a class="nav-link" href="bingo_game_online.php">BingoGameOnline</a>
+	        </li>
+		  	<li class="nav-item pl">
+	          <a class="nav-link" href="bingo_game.php">BingoGame</a>
+	        </li>
 		    <li class="nav-item pl">
-	          <a class="nav-link" href="message_board.php">留言版</a>
+	          <a class="nav-link" href="message_board.php">留言板</a>
 	        </li>
 	        <li class="nav-item pl">
 			  <a class="nav-link" href="api/logout-api.php"><img class="shopbag" src="images/icon/wbag-50.png" alt="" width="20" height="20"></a>
@@ -140,26 +146,6 @@
 
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
-		      <!-- <li class="nav-item active">
-		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="#">Link</a>
-		      </li>
-		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Dropdown
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Action</a>
-		          <a class="dropdown-item" href="#">Another action</a>
-		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#">Something else here</a>
-		        </div>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		      </li> -->
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -172,7 +158,7 @@
 		<div class="container box">
 			<div class="row">
 				<div class="col-1"></div>
-				<div class="col-10 text-center"><h1>練習計畫</h1></div>
+				<div class="col-10 text-center"><h1></h1></div>
 			</div>
 			<div class="row">
 				<div class="col-1"></div>
@@ -181,11 +167,11 @@
 			<div class="row">
 				<div class="col-3"></div>
 				<div class="col-6">
-					<ul>
-						<li>1.會員註冊</li>
-						<li>2.會員登入</li>
-						<li>3.會員資料修改</li>
-					</ul>
+					<ol>
+						<li>會員註冊</li>
+						<li>會員登入</li>
+						<li>會員資料修改</li>
+					</ol>
 				</div>
 				<div class="col-3"></div>
 			</div>
@@ -196,31 +182,32 @@
 			<div class="row">
 				<div class="col-3"></div>
 				<div class="col-6">
-					<ul>
-						<li>1.發佈留言</li>
-						<li>2.回覆留言</li>
-						<li>3.留言CRUD</li>
-						<li>4.留言按讚</li>
-						<li>5.留言收藏</li>
-						<li>6.留言回應.按讚計數</li>						
-					</ul>
+					<ol>
+						<li>發佈留言</li>
+						<li>回覆留言</li>
+						<li>留言CRUD</li>
+						<li>留言按讚</li>
+						<li>留言收藏</li>
+						<li>留言回應.按讚計數</li>						
+					</ol>
 				</div>
 				<div class="col-3"></div>
 			</div>
-			<!-- <div class="row mt-3" id="hotel_data">
-				<div class="col-sm-4 mb-3">
-					<div class="card border-dark" >
-					<div id="hotel_img">
-						<img src="/images/01.jpg" alt="" class="card-img-top img" width="100%" height="250">
-					</div>
-					<div class="card-body border-dark">
-					<div class="card-title">商品名稱</div>
-					<div class="card-title price">價錢</div>
-					<div class="card-subtitle c_phone"><a href="" class="btn btn-info btn-block c_btn ">詳細介紹</a></div>
-					</div>
-					</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10 text-center"><h1>3.賓果小遊戲</h1></div>
+			</div>
+			<div class="row">
+				<div class="col-3"></div>
+				<div class="col-6">
+					<ol>
+						<li>做出50個號碼 每個賓果盤取36個</li>
+						<li>隨機取號碼</li>
+						<li>先達成5個連線獲勝</li>					
+					</ol>
 				</div>
-			</div> -->
+				<div class="col-3"></div>
+			</div>
 		</div>
 	</div>	
 	<script src="../js/bootstrap.min.js"></script>
