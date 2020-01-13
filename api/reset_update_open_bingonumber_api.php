@@ -13,7 +13,7 @@
 
 	if (mysqli_num_rows($result)>0) {
 		$row=mysqli_fetch_assoc($result);	
-		$sql = "UPDATE bingonumber SET opennumber ='$opennumber' ";	
+		$sql = "UPDATE bingonumber SET opennumber ='$opennumber' , nowopen ='$opennumber' ";	
 		if (execute_sql($link, "jhproject", $sql)) {
 		   	echo 1 ;
 		}else {

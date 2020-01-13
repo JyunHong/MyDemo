@@ -125,7 +125,7 @@
 	<div class="bd-example">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-12 text-center"><h1>BingoGame</h1></div>
+				<div class="col-12 text-center"><h1>BingoGameServer</h1></div>
 			</div>			
 		</div>
 
@@ -134,7 +134,7 @@
 		<div class="pt container-fluid">
 			<div class="row">
 			  	<div class="col-12 text-center">
-			  		<a href="#" onclick="startgame()" class="btn btn-primary" id="start_btn">開始遊戲</a>
+			  		<!-- <a href="#" onclick="startgame()" class="btn btn-primary" id="start_btn">開始遊戲</a> -->
 			  	</div>
 			</div>
 		</div>
@@ -147,19 +147,67 @@
 		var bingonumber = [];
 		var bingoplatedom = new Array();
 		var chkbingoline = new Array();
-		var content= [];
-		var yourchoose ;
-		var chooseid ;
-		var chkwinner = [];
 		var alreadyconnect ;
 		var gameover = 0;
-		var uid = [];
-		var winid = [] ;
+		var bingoround = 1;
 
-		bingoplatehtml();
-		bingonumberhtml();
-		readallbingoplate();
-		readnumber();
+		//reset資料庫 重新開始run
+		allreset();
+		
+		//開始遊戲 server
+		function startgame(){
+
+			bingonumber = [];
+			bingoplatedom = new Array();
+			alreadyconnect =0 ;
+			bingoround = 1;
+
+			bingoplatehtml();
+			bingonumberhtml();
+
+			readallbingoplate();
+			getshufflenumber();
+			readbingoround();
+			// console.log(bingoround);
+			//開始開球
+			startnumbershift = setInterval(( () => numbershift() ), 1000);
+		}
+
+		//開始開號 server
+		function numbershift(){
+			var opennumber = 0; //開出的號碼歸零
+			// console.log("遊戲狀態"+gameover);
+				//判斷bingonumber是否小於1 或是 是否啟動結束遊戲
+			if(gameover==1){
+				//結束開號
+				clearInterval(startnumbershift);
+				allreset();
+			}else{
+				//shift()把陣列第一個號取出
+				opennumber=bingonumber.shift();
+				console.log("開出號碼 :"+opennumber);
+				readnumber();
+				alnumbershift(opennumber);
+				updatebnumber(opennumber);
+
+				//用迴圈啟動connectline的方法 判斷是哪一個賓果盤賓果
+				for(var i=0;i<chkbingoline.length;i++){
+					var n=0;
+					alreadyconnect=0;
+					connectline(chkbingoline[i]);
+						
+					if(alreadyconnect>=5){
+						var n;
+						gameover=1; //結束開號 遊戲結束
+						n=i+1; //將獲勝的賓果盤號碼放入 n變數
+						console.log("勝利者"+n); 
+						insertwinner(n,bingoround);//更新勝利的資料
+					}
+				}
+			}			
+		}
+
+		//讀取開球號碼
 		function readnumber(){
 			$.ajax({
 				type:"POST",
@@ -182,6 +230,23 @@
 				}
 			}	
 		}
+		//讀取遊戲場次
+		function readbingoround(){
+			$.ajax({
+				type:"POST",
+				url:"../api/read_bingoround_api.php",
+				dataType:"json",
+				async :false,
+				success:shownumber,
+				error:function(){
+				    alert("read_bingoround_api.php");
+				}
+			});
+
+			function shownumber(data){
+				bingoround=data[1];
+			}	
+		}
 
 		//製作賓果號碼html
 		function bingonumberhtml(){
@@ -200,55 +265,34 @@
 			$("#allbingonumber").html(htmlbingonumber);
 		}	
 
-		//寫入賓果號碼
-		function getbingonumber(){
-			
-			for(var n=1;n<=60;n++){
-				
-				bingonumber.push(n);
-			}
-			//重新洗牌
-			bingonumber=shuffle(bingonumber);
-		}
-
 		//讀取全部賓果盤
 		function readallbingoplate(){
-				$.ajax({
-				        type:"POST",
-				        url:"../api/read_bingoplatenum_api.php",
-				        dataType:"json",
-				        success:showplate,
-				        async :false,
-				        error:function(){
-				            alert("read_bingoplatenum_api.php");
-				        }
-				});
+			$.ajax({
+			        type:"POST",
+			        url:"../api/read_bingoplatenum_api.php",
+			        dataType:"json",
+			        success:showplate,
+			        async :false,
+			        error:function(){
+			            alert("read_bingoplatenum_api.php");
+			        }
+			});
 
-				function showplate(data){
-					for(i=0;i<data.length;i++){
-						datacontent= [];
-						datacontent=JSON.parse(data[i].bp_content);
-						uid[i]=data[i].u_ID;
-						for(var j=1;j<=36;j++){
-							var n ;
-							n=datacontent[j-1];
-							$("#plate"+data[i].bp_number+"number"+j).attr("class","chkbingo"+n);
-							$("#plate"+data[i].bp_number+"number"+j).html(datacontent[j-1]);
-						}
-						if(data[i].u_ID==<?php if(isset($_SESSION["u_ID"])){echo $_SESSION["u_ID"];
-                            				   }else{echo "-1";}?>){
-
-							$("#plate"+data[i].bp_number).css({"border":"2px solid #212529",
-																	"border-radius": "5%",
-																	"background-color":"#FFA733"
-								 								  });
-							$("#plate"+data[i].bp_number+" h3").html("我的賓果盤");
-						}
-						chkbingoline[i]=datacontent;
-					}		
-				}	
+			function showplate(data){
+				for(i=0;i<data.length;i++){
+					datacontent= [];
+					datacontent=JSON.parse(data[i].bp_content);
+					// uid[i]=data[i].u_ID;
+					for(var j=1;j<=36;j++){
+						var n ;
+						n=datacontent[j-1];
+						$("#plate"+data[i].bp_number+"number"+j).attr("class","chkbingo"+n);
+						$("#plate"+data[i].bp_number+"number"+j).html(datacontent[j-1]);
+					}
+					chkbingoline[i]=datacontent;
+				}		
+			}
 		}
-		// console.log(chkbingoline);
 
 		// 賓果盤的html
 		function bingoplatehtml(){
@@ -290,66 +334,18 @@
 			}			
 		}
 
-
-		
-		//開始開球
-		function startgame(){
-			getbingonumber();
-			//開始開球
-			var startnumbershift = setInterval(( () => numbershift() ), 100);
-			// changestartbtn("over");
-			function numbershift(){
-				var opennumber = 0; //開出的號碼歸零
-				// console.log(bingonumber);	
-				//判斷bingonumber是否小於1 或是 是否啟動結束遊戲
-				if(bingonumber.length<1  || gameover==1){
-					//結束開號
-					clearInterval(startnumbershift);
-				}else{
-					//shift()把陣列第一個號取出
-					opennumber=bingonumber.shift();
-					console.log(opennumber);
-					readnumber();
-					alnumbershift(opennumber);
-					updatebnumber(opennumber);
-
-					//用迴圈啟動connectline的方法 判斷是哪一個賓果盤賓果
-					for(var i=0;i<chkbingoline.length;i++){
-						var n=0;
-						connectline(chkbingoline[i]);
-
-						if(alreadyconnect>4){
-							n=chkwinner.push(i+1);
-							winid=uid[n];
-						}
-					}				
-					if(chkwinner.length>=0 && chkwinner.length<=3){
-					console.log(chkwinner.length); 
-						switch(chkwinner.length){
-							case 1:
-								chkwinner[0];
-								bingowin(chkwinner[0]);
-								break;
-							case 2:
-								chkwinner[0];
-								chkwinner[1];
-								bingowin(chkwinner[0],chkwinner[1]);
-								break;
-							case 3:
-								chkwinner[0];
-								chkwinner[1];
-								chkwinner[2];
-								bingowin(chkwinner[0],chkwinner[1],chkwinner[2]);
-								break;
-						}
-					}else if(chkwinner.length>3){
-						alert("不可思議的事情發生了");
-						gameover=1;
-					}
-				}				
+		//重新洗牌 server
+		function getshufflenumber(){
+			
+			for(var n=1;n<=60;n++){
+				
+				bingonumber.push(n);
 			}
+			//重新洗牌
+			bingonumber=shuffle(bingonumber);
 		}
-		//更新開出號碼的狀態 	
+
+		//更新開出號碼的狀態 	server
 		function updatebnumber(number){
 			$.ajax({
 				type:"POST",
@@ -369,9 +365,9 @@
 			}
 		}
 
-		//將開出的賓果號碼改變狀態
+		//將開出的賓果號碼改變狀態 server
 		function alnumbershift(number){
-			// console.log(chkbingoline);	
+			
 			for(var i=0;i<chkbingoline.length;i++){
 				var n = 0 ;
 				//設定一個可以接收每個賓果盤的陣列
@@ -390,32 +386,20 @@
 					upchkarray(n,chkbingoline[i]);
 				}
 			}				
-			
-			//先讀取賓果盤的號碼
-			// $.ajax({
-			//     type:"POST",
-			//     url:"../api/read_bingoplatenum_api.php",
-			//     dataType:"json",
-			//     success:showplatearray,
-			//     error:function(){
-			//     	alert("read_bingoplatenum_api.php");
-			//    }
-			// });
-			// function showplatearray(){
-			// 	datacontent=JSON.parse(data[i].bp_content);
-			// }
 		}
 
-		//更新陣列參數來判斷是否連線
+		//更新陣列參數來判斷是否連線 server
 		function upchkarray(n,array){
 			$.ajax({
 			    type:"POST",
 			    url:"../api/upchkarray_bingoplate_api.php",
 			    data:{bp_number:n,bp_chklinearray:JSON.stringify(array)},
 			    dataType:"json",
+			    async :false,
 			    success:show,
 			    error:function(){
 			    	alert("upchkarray_bingoplate_api.php");
+			    	gameover = 1;
 			   	}
 			});
 			function show(data){
@@ -423,63 +407,28 @@
 			}				
 		}
 		
-
-		//win跳出alert
-		function bingowin(winner,winnertwo,winnerthree){
-			gameover=1;
-
-			yourid=<?php if(isset($_SESSION["u_ID"])){
-                            echo $_SESSION["u_ID"];
-                     	 }else{
-                        	echo "-1";
-                     	 } ?> ;
-			console.log(yourid);
-			if(yourid== winid[0] || yourid == winid[1] || yourid == winid[3]){
-				alert("恭喜你賓果成功");
-				$("#winner h1").html("YOU WIN");
-			}
-
-			if(winnerthree){
-				bingonum=winner+'.'+winnertwo+'.'+winnerthree;
-				alert(bingonum+"號賓果盤同時Bingo");
-				$("#winner h1").html("很可惜是"+bingonum+"號賓果盤BINGO");
-			}else if (winnertwo){
-				bingonum=''+winner+'號和'+winnertwo+'';
-				alert(bingonum+"號賓果盤同時Bingo");
-				$("#winner h1").html("很可惜是"+bingonum+"號賓果盤BINGO");
-			}else{
-				alert(winner+"號賓果盤Bingo");
-				$("#winner h1").html("很可惜是"+winner+"號賓果盤BINGO");
-			}
-
-		}
-
-
-		function insterewinner(uid,bgn){
-			console.log(uid);
-			console.log(bgn);
+		//新增勝利者資料 server
+		function insertwinner(n,bingoround){
 			$.ajax({
-                type:"POST",
-                url:"../api/insert_bingop_winner_api.php",
-                data:{u_ID:uid,bp_number:bgn},
-                success:showresult,
-                error:function(){
-		            alert("insert_bingop_winner_api.php");
-                }
-            });
-            function showresult(data){
-            	console.log(data);
-            }
+			    type:"POST",
+			    url:"../api/insert_bingowinner_api.php",
+			    data:{bp_number:n,br_ID:bingoround},
+			    dataType:"json",
+			    success:winner,
+			    error:function(){
+			    	alert("insert_bingowinner_api.php");
+			   	}
+			});
+			function winner(data){
+				if(data==0){
+					alert("勝利者系統錯誤")
+				}
+			}
 		}
-
-
-
-
-		
-		//檢查賓果盤是否連線
+	
+		//檢查賓果盤是否連線 server
 		function connectline(chkbingo){
 			var line=0;
-			// console.log(chkbingo);
 			//橫線
 			if(chkbingo[0]==0 && chkbingo[1]==0 && chkbingo[2]==0 && chkbingo[3]==0 && chkbingo[4]==0 && chkbingo[5]==0){
 				line+=1;
@@ -527,6 +476,190 @@
 			}
 			alreadyconnect=line;
 		}
+
+		//重置 server
+		function allreset () {
+			gameover = 0;	
+			var bingonumber=[];
+			var allbingoplate=new Array();
+			var bingocontent=new Array();
+
+			resetalltime();
+			clearoldplate();
+			getbingonumber();
+			insertbingoplate();	
+			resetbingonumber();
+			insertbingoround();
+			breaktime();
+
+			//reset alltime
+			function resetalltime(){
+				$.ajax({
+				    type:"POST",
+				    url:"../api/reset_alltime_api.php",
+				    success:function(data){
+				    	console.log("已重置所有時間秒數");
+				    },
+				    error:function(){
+				        alert("reset_alltime_api.php");
+				    }
+				});
+			}
+
+			//刪除舊的賓果盤
+			function clearoldplate(){
+				$.ajax({
+				    type:"POST",
+				    url:"../api/reset_bingoplate_api.php",
+				    success:function(data){
+				    	console.log("已刪除上回合的賓果盤");
+				    },
+				    error:function(){
+				        alert("reset_bingoplate_api.php");
+				    }
+				});
+			}
+
+			//將開過的號碼狀態歸0
+			function resetbingonumber(){
+				$.ajax({
+				    type:"POST",
+				    url:"../api/reset_update_open_bingonumber_api.php",
+				    success:function(data){
+				    	// console.log(data);
+				    },
+				    error:function(){
+				        alert("reset_update_open_bingonumber_api.php");
+				    }
+				});
+			}  
+
+			//取的賓果盤號碼
+			function getbingonumber(){
+				for(var n=1;n<=60;n++){			
+					bingonumber.push(n);
+				}
+
+				for(i=1;i<=10;i++){
+					var chklinearr =[];
+					//洗牌
+					bingonumber=shuffle(bingonumber);
+					//將洗牌過的bingonumber 傳給bingodom
+					allbingoplate[i-1]=bingonumber;
+					bingoshufflenum=allbingoplate[i-1];
+									
+					for(var j=0;j<36;j++){	
+						// console.log(n);
+						chklinearr[j]=bingoshufflenum[j];
+						n=j+1;
+					}
+					bingocontent[i-1]=chklinearr;
+					// console.log(chkbingotable);
+				}
+					bingonumber=shuffle(bingonumber);
+				// console.log(bingonumber);
+			}
+
+			//更新賓果盤資料
+			function insertbingoplate(){	
+				for(i=1;i<=10;i++){
+					$.ajax({
+				        type:"POST",
+				        url:"../api/insert_bingoplate_api.php",
+				        data:{bp_number:i,bp_content:JSON.stringify(bingocontent[i-1]),bp_chklinearray:JSON.stringify(bingocontent[i-1])},
+				        success:function(data){
+				        	// console.log(data);
+				        },
+				        error:function(){
+				            alert("insert_bingoplate_api.php");
+				        }
+				    });				
+				}
+			}
+
+			//增新遊戲場次
+			function insertbingoround(){
+				$.ajax({
+					type:"POST",
+					url:"../api/insert_bingoround_api.php",
+					dataType:"json",
+					success:function(){
+					},
+					error:function(){
+					    alert("insert_bingoround_api.php");
+					}
+				});
+			}
+
+			//讀取休息時間 break_Time
+			function breaktime(){
+				var readbreaktime = setInterval(( () => checkbreaktime() ), 1000);
+				function checkbreaktime(){
+					$.ajax({
+					    type:"POST",
+					    url:"../api/read_breaktime_api.php",
+					    success:function(data){
+					    	if(data==0){
+					    		clearInterval(readbreaktime);
+					    		selectplatetime();
+					    	}
+					    	console.log("休息時間 : "+data);
+					    },
+					    error:function(){
+					        alert("read_breaktime_api.php");
+					    }
+					});
+				}	
+			}
+
+			//讀取選取時間
+			function selectplatetime(){
+				var readselectplatetime = setInterval(( () => checkselectplatetime() ), 1000);
+				function checkselectplatetime(){
+					$.ajax({
+					    type:"POST",
+					    url:"../api/read_selectplatetime_api.php",
+					    success:function(data){
+					    	if(data==0){
+					    		clearInterval(readselectplatetime);
+					    		loadtime();
+					    	}
+					    	console.log("選擇時間 : "+data);
+					    },
+					    error:function(){
+					        alert("read_selectplatetime_api.php");
+					    }
+					});
+				}	
+			}
+
+			//讀取loadtime的秒數,秒數為0啟動readygame();;
+			function loadtime(){
+				var readloadtime = setInterval(( () => checkloadtime() ), 1000); //讀取load時間
+				function checkloadtime(){
+					$.ajax({
+					    type:"POST",
+					    url:"../api/read_loadtime_api.php",
+					    success:function(data){
+					    	if(data==0){
+					    		clearInterval(readloadtime);
+					    		readygame();
+					    	}
+					    	console.log("LOAD時間 : "+data);
+					    },
+					    error:function(){
+					        alert("read_loadtime_api.php");
+					    }
+					});
+				}			
+			}
+
+			function readygame(){
+				var ready = setTimeout(( () => startgame() ), 2000); //讀取load時間
+			}
+
+		}
+
 		//參考https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 		//把陣列元素打亂
 		function shuffle(array) {

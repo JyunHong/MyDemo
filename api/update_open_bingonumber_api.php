@@ -3,6 +3,8 @@
 	
 	$b_number = $_POST["b_number"];
 	$opennumber = 1 ;
+	$nowopen = 1 ;
+	$clearnowopen = 0;
 
 	require_once("dbtools.inc.php");
 	$link = create_connection();
@@ -12,8 +14,13 @@
 	
 
 	if (mysqli_num_rows($result)>0) {
-		$row=mysqli_fetch_assoc($result);	
-		$sql = "UPDATE bingonumber SET opennumber ='$opennumber' WHERE b_number = ".$b_number;	
+
+		$sql = "UPDATE bingonumber SET nowopen ='$clearnowopen' ";	
+		execute_sql($link, "jhproject", $sql);
+
+
+
+		$sql = "UPDATE bingonumber SET opennumber ='$opennumber' , nowopen ='$nowopen' WHERE b_number = ".$b_number;	
 		if (execute_sql($link, "jhproject", $sql)) {
 		   	echo 1 ;
 		}else {
